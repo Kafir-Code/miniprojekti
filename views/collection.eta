@@ -1,0 +1,22 @@
+<% layout("./layouts/layout.eta") %>
+
+<h2>Collection: <%= it.collection.name %></h2>
+
+<h3>Todos</h3>
+<ul>
+<% it.todos.forEach((todo) => { %>
+    <li>
+        <%= todo.task %>
+        <form method="POST" action="/collections/<%= it.collection.id %>/todos/<%= todo.id %>/remove">
+            <input type="submit" value="Remove from collection">
+        </form>
+    </li>
+<% }) %>
+</ul>
+
+<h3>Add a Todo</h3>
+
+<form method="POST" action="/collections/<%= it.collection.id %>/todos">
+    <input type="text" name="task" />
+    <input type="submit" value="Add todo!">
+</form>
